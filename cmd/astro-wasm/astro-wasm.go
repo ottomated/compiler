@@ -102,6 +102,9 @@ func makeTransformOptions(options js.Value) transform.TransformOptions {
 				return result[0].String()
 			}
 		}
+	annotateSourceFile := false
+	if jsBool(options.Get("annotateSourceFile")) {
+		annotateSourceFile = true
 	}
 
 	preprocessStyle := options.Get("preprocessStyle")
@@ -115,6 +118,7 @@ func makeTransformOptions(options js.Value) transform.TransformOptions {
 		Compact:            compact,
 		ResolvePath:        resolvePathFn,
 		PreprocessStyle:    preprocessStyle,
+		AnnotateSourceFile: annotateSourceFile,
 	}
 }
 

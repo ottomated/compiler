@@ -55,6 +55,7 @@ export interface TransformOptions {
   as?: 'document' | 'fragment';
   resolvePath?: (specifier: string) => Promise<string>;
   preprocessStyle?: (content: string, attrs: Record<string, string>) => null | Promise<PreprocessorResult | PreprocessorError>;
+  annotateSourceFile?: boolean;
 }
 
 export type HoistedScript = { type: string } & (
