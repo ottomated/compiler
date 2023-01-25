@@ -91,6 +91,11 @@ func makeTransformOptions(options js.Value) transform.TransformOptions {
 		compact = true
 	}
 
+	annotateSourceFile := false
+	if jsBool(options.Get("annotateSourceFile")) {
+		annotateSourceFile = true
+	}
+
 	var resolvePath any = options.Get("resolvePath")
 	var resolvePathFn func(string) string
 	if resolvePath.(js.Value).Type() == js.TypeFunction {
@@ -102,9 +107,6 @@ func makeTransformOptions(options js.Value) transform.TransformOptions {
 				return result[0].String()
 			}
 		}
-	annotateSourceFile := false
-	if jsBool(options.Get("annotateSourceFile")) {
-		annotateSourceFile = true
 	}
 
 	preprocessStyle := options.Get("preprocessStyle")
