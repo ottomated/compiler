@@ -58,18 +58,13 @@ var NeverScopedSelectors map[string]bool = map[string]bool{
 
 func annotateElement(n *astro.Node, opts TransformOptions) {
 	if n.DataAtom == atom.Html {
-		n.Attr = append(n.Attr, astro.Attribute{
-			Key:  "data-astro-source-root",
-			Type: astro.QuotedAttribute,
-			Val:  opts.ProjectRoot,
-		})
-	} else {
-		n.Attr = append(n.Attr, astro.Attribute{
-			Key:  "data-astro-source-file",
-			Type: astro.QuotedAttribute,
-			Val:  opts.Pathname,
-		})
+		return
 	}
+	n.Attr = append(n.Attr, astro.Attribute{
+		Key:  "data-astro-source-file",
+		Type: astro.QuotedAttribute,
+		Val:  opts.NormalizedFilename,
+	})
 }
 
 func injectDefineVars(n *astro.Node, values []string) {
