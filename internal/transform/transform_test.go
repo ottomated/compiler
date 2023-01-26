@@ -460,6 +460,7 @@ func TestAnnotation(t *testing.T) {
 			h := handler.NewHandler(tt.source, "/src/pages/index.astro")
 			Transform(doc, TransformOptions{
 				AnnotateSourceFile: true,
+				Filename:           "/src/pages/index.astro",
 				NormalizedFilename: "/src/pages/index.astro",
 			}, h)
 			astro.PrintToSource(&b, doc)

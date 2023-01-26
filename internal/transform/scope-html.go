@@ -63,7 +63,7 @@ func annotateElement(n *astro.Node, opts TransformOptions) {
 	n.Attr = append(n.Attr, astro.Attribute{
 		Key:  "data-astro-source-file",
 		Type: astro.QuotedAttribute,
-		Val:  opts.NormalizedFilename,
+		Val:  opts.Filename,
 	})
 }
 
